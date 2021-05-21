@@ -112,4 +112,15 @@ describe('CodeTimer', () => {
       expect(codeTimer.startTime).to.equal(startTime.now)
     })
   })
+
+  describe('#finish()', () => {
+    it('records the start time', () => {
+      const codeTimer = new CodeTimer()
+      const finishTime = sinon.useFakeTimers(new Date().getTime())
+
+      codeTimer.finish()
+
+      expect(codeTimer.finishTime).to.equal(finishTime.now)
+    })
+  })
 })
