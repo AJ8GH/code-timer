@@ -35,31 +35,31 @@ describe('CodeTimer', () => {
     describe('calling the method under test', () => {
       it('Calls the method under test', () => {
         const codeTimer = new CodeTimer()
-        codeTimer.methodUnderTest = testFunction
+        codeTimer.method = testFunction
 
-        chai.spy.on(codeTimer, ['methodUnderTest'])
+        chai.spy.on(codeTimer, ['method'])
 
-        codeTimer.time({ method: codeTimer.methodUnderTest, arraySize: 5000 })
+        codeTimer.time({ method: codeTimer.method, size: 5000 })
 
-        expect(codeTimer.methodUnderTest).to.have.been.called()
+        expect(codeTimer.method).to.have.been.called()
       })
 
       it('calls a custom method when specified in options', () => {
         const codeTimer = new CodeTimer()
 
         const customMethod = () => { return 'This is a custom method' }
-        codeTimer.methodUnderTest = customMethod
-        chai.spy.on(codeTimer, ['methodUnderTest', '_runCustomAlgorithm'])
+        codeTimer.method = customMethod
+        chai.spy.on(codeTimer, ['method', '_runCustomAlgorithm'])
 
         const options = {
-          method: codeTimer.methodUnderTest,
-          arraySize: 5000,
+          method: codeTimer.method,
+          size: 5000,
           custom: true
         }
 
         codeTimer.time(options)
 
-        expect(codeTimer.methodUnderTest).to.have.been.called()
+        expect(codeTimer.method).to.have.been.called()
         expect(codeTimer._runCustomAlgorithm).to.have.been.called()
       })
     })
@@ -72,7 +72,7 @@ describe('CodeTimer', () => {
         codeTimer.inputGenerator = inputGenerator
         chai.spy.on(inputGenerator, ['generate'])
 
-        codeTimer.time({ method: testFunction, arraySize: 5000 })
+        codeTimer.time({ method: testFunction, size: 5000 })
 
         expect(inputGenerator.generate).to.have.been.called.with(5000)
       })
