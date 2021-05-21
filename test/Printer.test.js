@@ -11,7 +11,7 @@ describe('Printer', () => {
 
       const algoTimer = {
         method: [].reverse,
-        size: 5000,
+        arraySize: 5000,
         runTime: () => { return 2 }
       }
 
