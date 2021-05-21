@@ -76,17 +76,6 @@ describe('CodeTimer', () => {
 
         expect(inputGenerator.generate).to.have.been.called.with(5000)
       })
-
-      it('uses the printer to output the test run results to console', () => {
-        const codeTimer = new CodeTimer()
-        const printer = { printResults: () => {} }
-        codeTimer.printer = printer
-        chai.spy.on(printer, ['printResults'])
-
-        codeTimer.time({ method: testFunction, arraySize: 5000 })
-
-        expect(printer.printResults).to.have.been.called.with(codeTimer)
-      })
     })
   })
 
@@ -98,6 +87,18 @@ describe('CodeTimer', () => {
       codeTimer.finishTime = 1500
 
       expect(codeTimer.runTime()).to.equal(500)
+    })
+  })
+
+  describe('#printResults()', () => {
+    it('calls print on printer', () => {
+      const codeTimer = new CodeTimer()
+      codeTimer.printer = { print: () => {} }
+      chai.spy.on(codeTimer.printer, ['printResults'])
+
+      codeTimer.printResults()
+
+      expect(codeTimer.printer.printResults).to.have.been.called.with(codeTimer)
     })
   })
 })
