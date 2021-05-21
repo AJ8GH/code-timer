@@ -21,15 +21,12 @@ Import into your project:
 import AlgoTimer, { AlgoRunner } from 'algo-timer'
 ```
 
-
-ensure `type` is set to `module` in your `package.json`:
+Ensure `type` is set to `module` in your `package.json`:
 
 ```json
 // package.json
 {
-  // ...
-  "type": "module",
-  // ...
+  "type": "module"
 }
 ```
 
@@ -114,7 +111,7 @@ algoRunner.run(method: myFunction, size: 1000, runs: 5, custom: true)
 
 Results are output to the console in the following format:
 
-```js
+```
   #reverse() => Array Size: 2000000, Run Time: 2
   #reverse() => Array Size: 4000000, Run Time: 2
   #reverse() => Array Size: 6000000, Run Time: 3
