@@ -101,4 +101,15 @@ describe('CodeTimer', () => {
       expect(codeTimer.printer.printResults).to.have.been.called.with(codeTimer)
     })
   })
+
+  describe('#start()', () => {
+    it('records the start time', () => {
+      const codeTimer = new CodeTimer()
+      const startTime = sinon.useFakeTimers(new Date().getTime())
+
+      codeTimer.start()
+
+      expect(codeTimer.startTime).to.equal(startTime.now)
+    })
+  })
 })
