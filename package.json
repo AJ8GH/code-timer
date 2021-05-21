@@ -2,7 +2,7 @@
   "name": "algo-timer",
   "version": "1.0.0",
   "description": "Timing framework to measure algorithmic efficiency",
-  "main": "index.js",
+  "main": "AlgoTimer.js",
   "type": "module",
   "scripts": {
     "test": "c8 mocha",
