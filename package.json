@@ -1,0 +1,32 @@
+{
+  "name": "algo-timer",
+  "version": "1.0.0",
+  "description": "Timing framework to measure algorithmic efficiency",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "c8 mocha **/test"
+  },
+  "keywords": [
+    "timing",
+    "algorithm",
+    "efficiency",
+    "performance"
+  ],
+  "author": "Adam Jonas",
+  "license": "ISC",
+  "devDependencies": {
+    "c8": "^7.7.2",
+    "chai": "^4.3.4",
+    "chai-spies": "^1.0.0",
+    "codecov": "^3.8.2",
+    "eslint": "^7.26.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.23.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0",
+    "sinon": "^10.0.0"
+  }
+}
