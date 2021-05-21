@@ -1,6 +1,6 @@
 {
   "name": "algo-timer",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Timing framework to measure algorithmic efficiency",
   "main": "index.js",
   "type": "module",

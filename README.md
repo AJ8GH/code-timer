@@ -1,9 +1,11 @@
-Algo-Timer ⏱
+algo-timer ⏱
 =============
 
 [![Build Status](https://travis-ci.com/AJ8GH/algo-timer.svg?branch=main)](https://travis-ci.com/AJ8GH/algo-timer) [![Maintainability](https://api.codeclimate.com/v1/badges/510048d893759d26f6d5/maintainability)](https://codeclimate.com/github/AJ8GH/algo-timer/maintainability) [![BCH compliance](https://bettercodehub.com/edge/badge/AJ8GH/algo-timer?branch=main)](https://bettercodehub.com/) [![codecov](https://codecov.io/gh/AJ8GH/algo-timer/branch/main/graph/badge.svg?token=KYZ9V6KT96)](https://codecov.io/gh/AJ8GH/algo-timer)
 
-A customisable and easy to use code-timing framework.
+A flexible and easy to use code-timing framework.
+
+[Available on NPM](https://www.npmjs.com/package/algo-timer)
 
 ## Dependencies
 - `"c8": "^7.7.2",`
@@ -31,32 +33,58 @@ npm test
 
 ## Usage
 
-### Timing a built in function
+Add to your package as a development dependency:
 
-Using CodeTimer `#time()` to Time the `array.sort()` method, on an array of 1000 elements.
+```shell
+npm i -D algo-timer
+```
+
+Import into your project:
 
 ```js
-const codeTimer = new CodeTimer()
+import AlgoTimer, { AlgoRunner } from 'algo-timer'
+```
+
+
+ensure `type` is set to `module` in your `package.json`:
+
+```json
+// package.json
+{
+  // ...
+  "type": "module",
+  // ...
+}
+```
+
+And you are ready to start timing some code.
+
+### Timing a built in function
+
+Using AlgoTimer `#time()` to Time the `array.sort()` method, on an array of 1000 elements.
+
+```js
+const algoTimer = new AlgoTimer()
 
 const options = {method: [].sort, size: 1000}
 
-codeTimer.time()
+algoTimer.time()
 // runs the method and records the data
 // returns the run time in ms
 
-codeTimer.runTime()
+algoTimer.runTime()
 // returns the run time in ms
 
-codeTimer.printResults()
+algoTimer.printResults()
 // prints the method, array size and run time
 ```
 
 ### Timing a custom function
 
-Pass custom: true in the argument object to use CodeTimer #time() to time a custom method.
+Pass custom: true in the argument object to use AlgoTimer #time() to time a custom method.
 
 ```js
-const codeTimer = new CodeTimer()
+const algoTimer = new AlgoTimer()
 
 const last = (array) => { return array[array.length -1] }
 
@@ -68,13 +96,13 @@ const options = {method: last, size: 1000, custom: true }
 Use `#start()` and `#finish()` manually to time any code.
 
 ```js
-codeTimer = new CodeTimer()
+algoTimer = new AlgoTimer()
 
-codeTimer.start()
+algoTimer.start()
 // code you want to time
-codeTimer.finish()
+algoTimer.finish()
 
-codeTimer.runTime()
+algoTimer.runTime()
 // run time of your code in ms
 ```
 
@@ -119,4 +147,4 @@ Results are output to the console in the following format:
   #reverse() => Array Size: 12000000, Run Time: 7
 ```
 
-The data from the last run can be accessed through `AlgoRunner.codeTimer`
+The data from the last run can be accessed through `AlgoRunner.algoTimer`
