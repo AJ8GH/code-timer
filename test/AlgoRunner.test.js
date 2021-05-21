@@ -19,5 +19,19 @@ describe('AlgoRunner', () => {
 
       expect(codeTimer.time).to.have.been.called(24)
     })
+
+    it('runs a different number of times when specified + 4 control samples', () => {
+      const algoRunner = new AlgoRunner()
+      const testMethod = () => {}
+      const codeTimer = { time: () => {} }
+
+      chai.spy.on(codeTimer, ['time'])
+      algoRunner.codeTimer = codeTimer
+
+      const options = { method: testMethod, size: 1000, runs: 30 }
+      algoRunner.run(options)
+
+      expect(codeTimer.time).to.have.been.called(34)
+    })
   })
 })
