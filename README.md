@@ -7,30 +7,6 @@ A flexible and easy to use code-timing framework.
 
 [Available on NPM](https://www.npmjs.com/package/algo-timer)
 
-## Dependencies
-- `"c8": "^7.7.2",`
-- `"chai": "^4.3.4",`
-- `"chai-spies": "^1.0.0",`
-- `"codecov": "^3.8.2",`
-- `"eslint": "^7.26.0",`
-- `"eslint-config-standard": "^16.0.2",`
-- `"eslint-plugin-import": "^2.23.2",`
-- `"eslint-plugin-node": "^11.1.0",`
-- `"eslint-plugin-promise": "^4.3.1",`
-- `"mocha": "^8.4.0",`
-- `"nyc": "^15.1.0",`
-- `"sinon": "^10.0.0"`
-
-## Getting Started
-
-* Clone this repository: `git clone git@github.com:AJ8GH/algo-timer.git`
-* Navigate to project root and install dependencies: `cd algo-timer && npm i`
-
-## Running Tests
-```shell
-npm test
-```
-
 ## Usage
 
 Add to your package as a development dependency:
@@ -148,3 +124,29 @@ Results are output to the console in the following format:
 ```
 
 The data from the last run can be accessed through `AlgoRunner.algoTimer`
+
+## Development Dependencies
+
+- `"c8": "^7.7.2",`
+- `"chai": "^4.3.4",`
+- `"chai-spies": "^1.0.0",`
+- `"codecov": "^3.8.2",`
+- `"eslint": "^7.26.0",`
+- `"eslint-config-standard": "^16.0.2",`
+- `"eslint-plugin-import": "^2.23.2",`
+- `"eslint-plugin-node": "^11.1.0",`
+- `"eslint-plugin-promise": "^4.3.1",`
+- `"mocha": "^8.4.0",`
+- `"nyc": "^15.1.0",`
+- `"sinon": "^10.0.0"`
+
+## Getting Started
+
+* Clone this repository: `git clone git@github.com:AJ8GH/algo-timer.git`
+* Navigate to project root and install dependencies: `cd algo-timer && npm i`
+
+## Running Tests
+
+```shell
+npm test
+```
