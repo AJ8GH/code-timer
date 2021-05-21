@@ -10,8 +10,8 @@ describe('Printer', () => {
       const printer = new Printer()
 
       const codeTimer = {
-        methodUnderTest: [].reverse,
-        arraySize: 5000,
+        method: [].reverse,
+        size: 5000,
         runTime: () => { return 2 }
       }
 
