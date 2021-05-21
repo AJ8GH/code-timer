@@ -6,46 +6,46 @@ chai.use(spies)
 
 describe('AlgoRunner', () => {
   describe('#run()', () => {
-    it('runs the codeTimer 20 times + 4 control samples by default', () => {
+    it('runs the algoTimer 20 times + 4 control samples by default', () => {
       const algoRunner = new AlgoRunner()
       const testMethod = () => {}
-      const codeTimer = { printResults: () => {}, time: () => {} }
+      const algoTimer = { printResults: () => {}, time: () => {} }
 
-      chai.spy.on(codeTimer, ['time'])
-      algoRunner.codeTimer = codeTimer
+      chai.spy.on(algoTimer, ['time'])
+      algoRunner.algoTimer = algoTimer
 
       const options = { method: testMethod, size: 1000 }
       algoRunner.run(options)
 
-      expect(codeTimer.time).to.have.been.called(24)
+      expect(algoTimer.time).to.have.been.called(24)
     })
 
     it('runs a different number of times when specified + 4 control samples', () => {
       const algoRunner = new AlgoRunner()
       const testMethod = () => {}
-      const codeTimer = { printResults: () => {}, time: () => {} }
+      const algoTimer = { printResults: () => {}, time: () => {} }
 
-      chai.spy.on(codeTimer, ['time'])
-      algoRunner.codeTimer = codeTimer
+      chai.spy.on(algoTimer, ['time'])
+      algoRunner.algoTimer = algoTimer
 
       const options = { method: testMethod, size: 1000, runs: 30 }
       algoRunner.run(options)
 
-      expect(codeTimer.time).to.have.been.called(34)
+      expect(algoTimer.time).to.have.been.called(34)
     })
 
     it('prints the results', () => {
       const algoRunner = new AlgoRunner()
       const testMethod = () => {}
-      const codeTimer = { printResults: () => {}, time: () => {} }
-      algoRunner.codeTimer = codeTimer
+      const algoTimer = { printResults: () => {}, time: () => {} }
+      algoRunner.algoTimer = algoTimer
 
-      chai.spy.on(codeTimer, ['printResults'])
+      chai.spy.on(algoTimer, ['printResults'])
 
       const options = { method: testMethod, size: 1000 }
       algoRunner.run(options)
 
-      expect(codeTimer.printResults).to.have.been.called(24)
+      expect(algoTimer.printResults).to.have.been.called(24)
     })
   })
 })
