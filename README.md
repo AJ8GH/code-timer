@@ -1,4 +1,4 @@
-algo-timer ⏱
+code-timer ⏱
 =============
 
 [![Build Status](https://travis-ci.com/AJ8GH/algo-timer.svg?branch=main)](https://travis-ci.com/AJ8GH/algo-timer) [![Maintainability](https://api.codeclimate.com/v1/badges/510048d893759d26f6d5/maintainability)](https://codeclimate.com/github/AJ8GH/algo-timer/maintainability) [![BCH compliance](https://bettercodehub.com/edge/badge/AJ8GH/algo-timer?branch=main)](https://bettercodehub.com/) [![codecov](https://codecov.io/gh/AJ8GH/algo-timer/branch/main/graph/badge.svg?token=KYZ9V6KT96)](https://codecov.io/gh/AJ8GH/algo-timer)
@@ -18,7 +18,7 @@ npm i -D algo-timer
 Import into your project:
 
 ```js
-import AlgoTimer, { AlgoRunner } from 'algo-timer'
+import codeTimer from 'code-timer'
 ```
 
 Ensure `type` is set to `module` in your `package.json`:
@@ -34,30 +34,32 @@ And you are ready to start timing some code.
 
 ### Timing a built in function
 
-Using AlgoTimer `#time()` to Time the `array.sort()` method, on an array of 1000 elements.
+Using codeTimer `#time()` to Time the `array.sort()` method, on an array of 1000 elements.
 
 ```js
-const algoTimer = new AlgoTimer()
+import codeTimer from 'code-timer'
+
+const codeTimer = new codeTimer()
 
 const options = {method: [].sort, size: 1000}
 
-algoTimer.time()
+codeTimer.time()
 // runs the method and records the data
 // returns the run time in ms
 
-algoTimer.runTime()
+codeTimer.runTime()
 // returns the run time in ms
 
-algoTimer.printResults()
+codeTimer.printResults()
 // prints the method, array size and run time
 ```
 
 ### Timing a custom function
 
-Pass custom: true in the argument object to use AlgoTimer #time() to time a custom method.
+Pass custom: true in the argument object to use codeTimer #time() to time a custom method.
 
 ```js
-const algoTimer = new AlgoTimer()
+const codeTimer = new codeTimer()
 
 const last = (array) => { return array[array.length -1] }
 
@@ -69,19 +71,17 @@ const options = {method: last, size: 1000, custom: true }
 Use `#start()` and `#finish()` manually to time any code.
 
 ```js
-algoTimer = new AlgoTimer()
+codeTimer = new codeTimer()
 
-algoTimer.start()
+codeTimer.start()
 // code you want to time
-algoTimer.finish()
+codeTimer.finish()
 
-algoTimer.runTime()
+codeTimer.runTime()
 // run time of your code in ms
 ```
 
-### Using AlgoRunner
-
-AlgoRunner can be used to measure the run time of algorithms for increasing input sizes, to track algorithmic complexity.
+### Timing multiple inputs with `#run()`
 
 `#run()` takes a method argument and a starting input size. It the method 20 times, increasing the input array size by a step of the input size each team.
 
@@ -92,21 +92,21 @@ e.g. the below code will run the sort method for 4 control runs, with arrays of 
 Then will run 20 runs, with array sizes of: 1,000 to 20,000, incrementing by 1,000 each time.
 
 ```js
-const algoRunner = new AlgoRunner()
+const codeTimer = new CodeTimer()
 
-algoRunner.run(method: [].sort, size: 1000)
+codeTimer.run(method: [].sort, size: 1000)
 ```
 
 To specify a different number of runs, simply add it as a property:
 
 ```js
-algoRunner.run(method: [].sort, size: 1000, runs: 5)
+codeTimer.run(method: [].sort, size: 1000, runs: 5)
 ```
 
-To run a custom function, add `custom: true as a property`:
+To run a custom function, add `custom: true` as a property:
 
 ```js
-algoRunner.run(method: myFunction, size: 1000, runs: 5, custom: true)
+codeTimer.run(method: myFunction, size: 1000, runs: 5, custom: true)
 ```
 
 Results are output to the console in the following format:
@@ -120,7 +120,13 @@ Results are output to the console in the following format:
   #reverse() => Array Size: 12000000, Run Time: 7
 ```
 
-The data from the last run can be accessed through `AlgoRunner.algoTimer`
+The data from the last run can be accessed through the properties:
+* `codeTimer.method`
+* `codeTimer.startTime`
+* `codeTimer.arraySize`
+* `codeTimer.finishTime`
+
+and the runTime method: `codeTimer.runTime()`
 
 ## Development Dependencies
 

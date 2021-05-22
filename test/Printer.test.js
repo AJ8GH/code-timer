@@ -9,13 +9,13 @@ describe('Printer', () => {
     it('outputs all details of the test run to console', () => {
       const printer = new Printer()
 
-      const algoTimer = {
+      const codeTimer = {
         method: [].reverse,
         arraySize: 5000,
         runTime: () => { return 2 }
       }
 
-      printer.printResults(algoTimer)
+      printer.printResults(codeTimer)
 
       const expectedOutput = '#reverse() => Array Size: 5000, Run Time: 2'
 

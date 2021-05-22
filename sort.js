@@ -1,5 +1,5 @@
-import AlgoRunner from './lib/AlgoRunner.js'
+import CodeTimer from './lib/CodeTimer.js'
 
-const algoRunner = new AlgoRunner()
+const codeTimer = new CodeTimer()
 
-algoRunner.run({ method: [].sort, size: 1000000 })
+codeTimer.run({ method: [].sort, size: 1000000 })
