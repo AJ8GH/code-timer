@@ -1,11 +1,13 @@
 code-timer ⏱
 =============
 
-[![Build Status](https://travis-ci.com/AJ8GH/algo-timer.svg?branch=main)](https://travis-ci.com/AJ8GH/algo-timer) [![Maintainability](https://api.codeclimate.com/v1/badges/510048d893759d26f6d5/maintainability)](https://codeclimate.com/github/AJ8GH/algo-timer/maintainability) [![BCH compliance](https://bettercodehub.com/edge/badge/AJ8GH/algo-timer?branch=main)](https://bettercodehub.com/) [![codecov](https://codecov.io/gh/AJ8GH/algo-timer/branch/main/graph/badge.svg?token=KYZ9V6KT96)](https://codecov.io/gh/AJ8GH/algo-timer)
+[![Build Status](https://travis-ci.com/AJ8GH/algo-timer.svg?branch=main)](https://travis-ci.com/AJ8GH/algo-timer) [![Maintainability](https://api.codeclimate.com/v1/badges/510048d893759d26f6d5/maintainability)](https://codeclimate.com/github/AJ8GH/algo-timer/maintainability) [![BCH compliance](https://bettercodehub.com/edge/badge/AJ8GH/algo-timer?branch=main)](https://bettercodehub.com/) [![codecov](https://codecov.io/gh/AJ8GH/algo-timer/branch/main/graph/badge.svg?token=KYZ9V6KT96)](https://codecov.io/gh/AJ8GH/algo-timer) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+ <a href="https://standardjs.com" style="float: right; padding: 0 0 20px 20px;"><img src="https://cdn.rawgit.com/feross/standard/master/sticker.svg" alt="Standard JavaScript" width="100" align="right"></a>
+
 
 A flexible and easy to use code-timing framework.
 
-[Available on NPM](https://www.npmjs.com/package/algo-timer)
+[Available on NPM](https://www.npmjs.com/package/@aj8/code-timer)
 
 ## Usage
 
