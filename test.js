@@ -2,4 +2,4 @@ import CodeTimer from './index.js'
 
 const ct = new CodeTimer()
 
-ct.time({ method: [].sort, size: 10000 })
+ct.run({ method: [].sort, size: 1000000, warmUp: 15 })

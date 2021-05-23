@@ -6,7 +6,7 @@ chai.use(spies)
 
 describe('CodeRunner', () => {
   describe('#run()', () => {
-    it('runs the codeTimer 20 times by default, + 4 control samples', () => {
+    it('runs the codeTimer 20 times + 5 warm ups by default', () => {
       const codeRunner = new CodeRunner()
       const testMethod = () => {}
       const codeTimer = { printResults: () => {}, time: () => {} }
@@ -16,7 +16,7 @@ describe('CodeRunner', () => {
       const options = { method: testMethod, size: 1000, codeTimer: codeTimer }
       codeRunner.run(options)
 
-      expect(codeTimer.time).to.have.been.called(24)
+      expect(codeTimer.time).to.have.been.called(25)
     })
 
     it('runs a different number of times when specified', () => {
@@ -35,7 +35,26 @@ describe('CodeRunner', () => {
 
       codeRunner.run(options)
 
-      expect(codeTimer.time).to.have.been.called(34)
+      expect(codeTimer.time).to.have.been.called(35)
+    })
+
+    it('allows warm up to be specified', () => {
+      const codeRunner = new CodeRunner()
+      const testMethod = () => {}
+      const codeTimer = { printResults: () => {}, time: () => {} }
+
+      chai.spy.on(codeTimer, ['time'])
+
+      const options = {
+        method: testMethod,
+        size: 1000,
+        warmUp: 10,
+        codeTimer: codeTimer
+      }
+
+      codeRunner.run(options)
+
+      expect(codeTimer.time).to.have.been.called(30)
     })
 
     it('uses 1000 as default starting size', () => {
@@ -67,7 +86,7 @@ describe('CodeRunner', () => {
       const options = { method: testMethod, size: 1000, codeTimer: codeTimer }
       codeRunner.run(options)
 
-      expect(codeTimer.printResults).to.have.been.called(24)
+      expect(codeTimer.printResults).to.have.been.called(25)
     })
 
     it('prints the results', () => {
@@ -80,7 +99,7 @@ describe('CodeRunner', () => {
       const options = { method: testMethod, size: 1000, codeTimer: codeTimer }
       codeRunner.run(options)
 
-      expect(codeTimer.printResults).to.have.been.called(24)
+      expect(codeTimer.printResults).to.have.been.called(25)
     })
   })
 })

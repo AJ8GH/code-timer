@@ -87,11 +87,10 @@ codeTimer.runTime()
 
 `#run()` takes a method argument and a starting input size. It the method 20 times, increasing the input array size by a step of the input size each team.
 
-Note - the method will run with 4 additional control inputs at the start, with sizes of 0.25, 0.5, 0.75 and 1 * the starting input size. This is to 'warm up the system' and reduce the effect of any initial spike which could bias results.
+Note - the method will run with 5 additional warm up inputs at the start, the size as the starting input size. This is to warm up the system and reduce spikes.
 
-e.g. the below code will run the sort method for 4 control runs, with arrays of length: 250, 500, 750, 1000
+THe number of runs and the number of warm ups can be specified.
 
-Then will run 20 runs, with array sizes of: 1,000 to 20,000, incrementing by 1,000 each time.
 
 ```js
 const codeTimer = new CodeTimer()
@@ -109,6 +108,12 @@ To run a custom function, add `custom: true` as a property:
 
 ```js
 codeTimer.run(method: myFunction, size: 1000, runs: 5, custom: true)
+```
+
+To change the number of warm up runs:
+
+```js
+codeTimer.run(method: myFunction, size: 1000, warmUp: 10, custom: true)
 ```
 
 Results are output to the console in the following format:
