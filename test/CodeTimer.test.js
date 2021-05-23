@@ -17,7 +17,7 @@ describe('CodeTimer', () => {
         const codeTimer = new CodeTimer()
         const startTime = sinon.useFakeTimers(new Date().getTime())
 
-        codeTimer.time({ method: testFunction })
+        codeTimer.time({ method: [].sort })
 
         expect(codeTimer.startTime).to.equal(startTime.now)
       })
@@ -26,7 +26,7 @@ describe('CodeTimer', () => {
         const codeTimer = new CodeTimer()
         const startTime = sinon.useFakeTimers(new Date().getTime())
 
-        codeTimer.time({ method: testFunction })
+        codeTimer.time({ method: [].sort })
 
         expect(codeTimer.finishTime).to.equal(startTime.now)
       })
