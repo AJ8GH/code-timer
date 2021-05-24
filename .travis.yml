@@ -1,12 +1,22 @@
 language: node_js
 node_js:
-  - 15
+- 15
 before_install:
-  - npm install -g npm@latest
-  - npm install -g codecov
+- npm install -g npm@latest
+- npm install -g codecov
 install:
-  - npm install --dev
+- npm install --dev
 script:
-  - npm test
+- npm test
 after_success:
-  - npm run coverage
+- npm run coverage
+deploy:
+  provider: npm
+  email: $NPM_EMAIL
+  api_key:
+    - $NPM_TOKEN
+      on:
+    tags: true
+    repo: AJ8GH/code-timer
+    branch: main
+  skip_cleanup: 'true'
