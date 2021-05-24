@@ -22,13 +22,13 @@ describe('CodeTimer', () => {
         expect(codeTimer.startTime).to.equal(startTime.now)
       })
 
-      it('records the finish time', () => {
+      it('records the stop time', () => {
         const codeTimer = new CodeTimer()
         const startTime = sinon.useFakeTimers(new Date().getTime())
 
         codeTimer.time({ method: [].sort })
 
-        expect(codeTimer.finishTime).to.equal(startTime.now)
+        expect(codeTimer.stopTime).to.equal(startTime.now)
       })
     })
 
@@ -44,15 +44,15 @@ describe('CodeTimer', () => {
         expect(codeTimer.method).to.have.been.called()
       })
 
-      it('can be called with an argument', () => {
+      it('can be called with a arguments', () => {
         const codeTimer = new CodeTimer()
         codeTimer.method = [].push
 
         chai.spy.on(codeTimer, ['method'])
 
-        codeTimer.time({ method: codeTimer.method, size: 5000, arg: 1 })
+        codeTimer.time({ method: codeTimer.method, size: 5000, args: [1, 2] })
 
-        expect(codeTimer.method).to.have.been.called.with(1)
+        expect(codeTimer.method).to.have.been.called.with(1, 2)
       })
 
       it('calls a custom method when specified in options', () => {
@@ -91,11 +91,11 @@ describe('CodeTimer', () => {
   })
 
   describe('#runTime()', () => {
-    it('returns the difference between start and finish time', () => {
+    it('returns the difference between start and stop time', () => {
       const codeTimer = new CodeTimer()
 
       codeTimer.startTime = 1000
-      codeTimer.finishTime = 1500
+      codeTimer.stopTime = 1500
 
       expect(codeTimer.runTime()).to.equal(500)
     })
@@ -124,14 +124,14 @@ describe('CodeTimer', () => {
     })
   })
 
-  describe('#finish()', () => {
-    it('records the start time', () => {
+  describe('#stop()', () => {
+    it('records the stop time', () => {
       const codeTimer = new CodeTimer()
-      const finishTime = sinon.useFakeTimers(new Date().getTime())
+      const stopTime = sinon.useFakeTimers(new Date().getTime())
 
-      codeTimer.finish()
+      codeTimer.stop()
 
-      expect(codeTimer.finishTime).to.equal(finishTime.now)
+      expect(codeTimer.stopTime).to.equal(stopTime.now)
     })
   })
 

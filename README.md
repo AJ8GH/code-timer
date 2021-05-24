@@ -68,16 +68,29 @@ const last = (array) => { return array[array.length -1] }
 const options = {method: last, size: 1000, custom: true }
 ```
 
+### Calling a function with arguments
+
+Use the Args property with an array, to call one or more arguments:
+
+```js
+const options = {method: [].unshift, size: 1000, args: [1] }
+// will call array.push(1)
+
+const options = {method: [].unshift, size: 1000, args: [1, 2, 3] }
+// will call array.push(1, 2, 3)
+```
+
+
 ### Manual usage
 
-Use `#start()` and `#finish()` manually to time any code.
+Use `#start()` and `#stop()` manually to time any code.
 
 ```js
 codeTimer = new codeTimer()
 
 codeTimer.start()
 // code you want to time
-codeTimer.finish()
+codeTimer.stop()
 
 codeTimer.runTime()
 // run time of your code in ms
@@ -131,7 +144,7 @@ The data from the last run can be accessed through the properties:
 * `codeTimer.method`
 * `codeTimer.startTime`
 * `codeTimer.arraySize`
-* `codeTimer.finishTime`
+* `codeTimer.stopTime`
 
 and the runTime method: `codeTimer.runTime()`
 
