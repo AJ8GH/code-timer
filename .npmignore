@@ -1,0 +1,8 @@
+.eslintrc.json
+test.js
+.travis.yml
+node_modules
+coverage
+.DS_Store
+**/.DS_Store
+test
