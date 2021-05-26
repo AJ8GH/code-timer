@@ -63,7 +63,11 @@ size     | size of the input array to run                 | Integer    | `1000`
 custom   | specifies that method is not a native function | Boolean    | `false`
 args     | arguments to call the method with              | array      | `[]`
 
+---
+### Example Usage
+
 Time the `array.sort()` method, on an array of 20,000 elements:
+
 ```js
 import codeTimer from 'code-timer'
 
@@ -125,6 +129,7 @@ args     | arguments to call the method with                | array      | `[]`
 runs     | number of times to execute the method under test | Integer    | `20`
 warmUp   | number of warm up runs to execute                | Integer    | `5`
 
+### Example Usage
 
 ```js
 const codeTimer = new CodeTimer()
