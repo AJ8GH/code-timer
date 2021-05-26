@@ -1,6 +1,6 @@
 {
   "name": "@aj8/code-timer",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Timing framework to measure algorithmic efficiency",
   "main": "index.js",
   "type": "module",
@@ -10,9 +10,15 @@
   },
   "keywords": [
     "timing",
-    "algorithm",
+    "timer",
+    "algorithms",
     "efficiency",
-    "performance"
+    "performance",
+    "timing code",
+    "time complexity",
+    "algorithmic complexity",
+    "computer science",
+    "CS"
   ],
   "publishConfig": {
     "access": "public"
