@@ -15,7 +15,7 @@ Time algorithms, functions, or single lines to measure effiency and locate high-
 Add to your package as a development dependency:
 
 ```shell
-npm i -D code-timer
+npm i -D @aj8/code-timer
 ```
 
 Import into your project:
