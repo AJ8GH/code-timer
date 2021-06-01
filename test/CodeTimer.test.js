@@ -75,8 +75,8 @@ describe('CodeTimer', () => {
       })
     })
 
-    describe('setup and output', () => {
-      it('generates input array', () => {
+    describe('setting up the input arguments', () => {
+      it('generates input array by default', () => {
         const codeTimer = new CodeTimer()
 
         const inputGenerator = { generate: () => {} }
@@ -86,6 +86,22 @@ describe('CodeTimer', () => {
         codeTimer.time({ method: testFunction, size: 5000 })
 
         expect(inputGenerator.generate).to.have.been.called.with(5000)
+      })
+
+      it('passes the size as the argument if integer is set to true', () => {
+        const codeTimer = new CodeTimer()
+        const customMethod = (arg) => { return `called with ${arg}` }
+
+        codeTimer.method = customMethod
+        chai.spy.on(codeTimer, ['method'])
+
+        const options = {
+          method: codeTimer.method, size: 5000, integer: true, custom: true
+        }
+
+        codeTimer.time(options)
+
+        expect(codeTimer.method).to.have.been.called.with(5000)
       })
     })
   })
