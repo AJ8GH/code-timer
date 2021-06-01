@@ -8,6 +8,8 @@ A flexible and easy to use code timing framework.
 
 Time algorithms, functions, or single lines to measure effiency and locate high-cost operations.
 
+[Usage](#usage) | [Getting Started](#getting-started) | [Manual timing](#manual-usage) | [Automated Timing](#automated-timing) | [Timing Custom Functions](#timing-a-custom-function) | [Timing Built-in Functions](#timing-a-built-in-function) | [Timing Integer Functions](#timing-integer-functions) | [Automated Timing of multiple Inputs](#timing-increasing-input-sizes) | [Development](#developer-section)
+
 [Available on NPM](https://www.npmjs.com/package/@aj8/code-timer)
 
 ## Usage
@@ -49,6 +51,8 @@ Ensure `type` is set to `module` in your `package.json`:
 
 And you are ready to start timing some code.
 
+---
+
 ### Manual usage
 
 Use `#start()` and `#stop()` manually to time any code.
@@ -64,7 +68,9 @@ codeTimer.runTime()
 // run time of your code in ms
 ```
 
-### Timing a built in function
+----
+
+## Automated timing
 
 Using codeTimer `#time()` to time how long a function takes to process an array of random numbers.
 
@@ -78,26 +84,31 @@ property   | Description                                                        
 `args`     | arguments to call the method with                                         | array      | `[]`
 `Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false`
 
-### Example Usage
+### Timing a built in array function
 
-Time the `array.sort()` method, on an array of 20,000 elements:
+To time a built in array function, pass the function as the method property in the argument object:
+```
+[].<functionName>
+```
+
+Example - time the built in Javascript `array.sort()` function, on an array of 20,000 elements:
 
 ```js
 import codeTimer from 'code-timer'
 
 const codeTimer = new codeTimer()
 
-const options = {method: [].sort, size: 20000}
+const options = { method: [].sort, size: 20000 }
 
-codeTimer.time()
-// runs the method and records the data
-// returns the run time in ms
+codeTimer.time(options)
+// runs the method and records the start time, stop time, run time, input size and method
+// return value is the run time in ms
 
 codeTimer.runTime()
-// returns the run time in ms
+// returns the run time of the last run in ms
 
 codeTimer.printResults()
-// prints the method name, array size and run time
+// prints the method name, array size and run time of the last run to the terminal
 ```
 
 ### Timing a custom function
@@ -105,23 +116,28 @@ codeTimer.printResults()
 Add `custom: true` in the argument object to use codeTimer #time() to time a custom method.
 
 ```js
-const codeTimer = new codeTimer()
-
 const last = (array) => { return array[array.length -1] }
 
-const options = {method: last, custom: true }
+const options = { method: last, custom: true }
+
+codeTimer.time(options)
 ```
 
-### Running a function on an integer instead of an array
+### Timing integer functions
 
 Add `integer: true` in the argument object to use codeTimer #time() to time a custom method.
 
 ```js
-const codeTimer = new codeTimer()
-
 const fibonacci = (integer) => { return /* code which returns fibbonacci numbers */ }
 
-const options = {method: fibonacci, custom: true, integer: true, size: 5000 }
+const options = {
+  method: fibonacci,
+  custom: true,
+  integer: true,
+  size: 5000
+}
+
+codeTimer.time(options)
 ```
 
 An input array will not be generated, and will instead run `fibonacci(5000)`
@@ -130,25 +146,33 @@ To run multiple integers increasing in size, add the same property to the option
 
 ### Calling a function with arguments
 
-Use the Args property with an array, to call one or more arguments:
+Use the Args property with an array of 1 or more arguments, to time the function with those arguments:
 
 ```js
-const options = {method: [].unshift, args: [1] }
+const options = { method: [].unshift, args: [1] }
+
+codeTimer.time(options)
 // will call array.push(1)
 
-const options = {method: [].unshift, args: [1, 2, 3] }
+const options = { method: [].unshift, args: [1, 2, 3] }
+
+codeTimer.time(options)
 // will call array.push(1, 2, 3)
 ```
 
+----
+
 ### Timing increasing input sizes
 
-`#run()` can be used to execute multiple inputs of increasing size.
+`#run()` times a function on multiple inputs of increasing size. After each run, the results are output to the terminal:
 
-It takes a method argument and a starting input size. It the method 20 times, increasing the input array size by a step of the input size each team.
+```
+<method> => Input size: <size-of-array-or-integer-function-was-executed-on>, Run Time: <run-time-in-ms>
+```
 
-Note - the method will run with 5 additional warm up inputs at the start, the size as the starting input size. This is to warm up the system and reduce spikes.
+Arrays of random numbers are auto-generated for each run. Each input increases in size by a step of the initial size value. Can be used to time array functions and integers
 
-The number of runs and the number of warm ups can be specified.
+The function will run with 5 additional warm up inputs at the start, the same size as the starting input size. This is to warm up the system and reduce spikes. The number of runs and the number of warm ups can be customised.
 
 property   | Description                                                               | Input type | default
 -----------|---------------------------------------------------------------------------|------------|--------
@@ -160,42 +184,6 @@ property   | Description                                                        
 `warmUp`   | number of warm up runs to execute                                         | Integer    | `5`
 `Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false`
 
-### Example Usage
-
-```js
-const codeTimer = new CodeTimer()
-
-codeTimer.run(method: [].sort)
-```
-
-To specify a different number of runs, simply add it as a property:
-
-```js
-codeTimer.run(method: [].sort, runs: 5)
-```
-
-To run a custom function, add `custom: true` as a property:
-
-```js
-codeTimer.run(method: myFunction, runs: 5, custom: true)
-```
-
-To change the number of warm up runs:
-
-```js
-codeTimer.run(method: myFunction, warmUp: 10, custom: true)
-```
-
-Results are output to the console in the following format:
-
-```
-  #reverse() => Array Size: 2000000, Run Time: 2
-  #reverse() => Array Size: 4000000, Run Time: 2
-  #reverse() => Array Size: 6000000, Run Time: 3
-  #reverse() => Array Size: 8000000, Run Time: 5
-  #reverse() => Array Size: 10000000, Run Time: 6
-  #reverse() => Array Size: 12000000, Run Time: 7
-```
 
 The data from the last run can be accessed through the properties:
 * `codeTimer.method`
@@ -203,9 +191,75 @@ The data from the last run can be accessed through the properties:
 * `codeTimer.arraySize`
 * `codeTimer.stopTime`
 
-and the runTime method: `codeTimer.runTime()`
+The run time can be accessed via the runTime function: `codeTimer.runTime()`
 
-## Development Dependencies
+### Example Usage
+
+Using run to time a custom reverse algorithm on random number arrays, to run 10 times, on inputs from 1,000,000 to 10,000,000, with 3 warm up runs:
+
+```js
+const reverse = () => { /* reversing algorithm */ }
+
+const options = {
+  method: reverse,
+  warmUp: 3,
+  custom: true,
+  size: 10000,
+  runs: 10
+}
+
+codeTimer.run(options)
+```
+
+The resulting output in the terminal in the following format:
+
+```
+#reverse() => Input size: 1000000, Run time: 1
+#reverse() => Input size: 1000000, Run time: 1
+#reverse() => Input size: 1000000, Run time: 1
+#reverse() => Input size: 1000000, Run time: 1
+#reverse() => Input size: 2000000, Run time: 2
+#reverse() => Input size: 3000000, Run time: 2
+#reverse() => Input size: 4000000, Run time: 3
+#reverse() => Input size: 5000000, Run time: 3
+#reverse() => Input size: 6000000, Run time: 3
+#reverse() => Input size: 7000000, Run time: 4
+#reverse() => Input size: 8000000, Run time: 5
+#reverse() => Input size: 9000000, Run time: 6
+#reverse() => Input size: 10000000, Run time: 6
+```
+
+A simple example:
+
+```js
+const codeTimer = new CodeTimer()
+
+codeTimer.run({ method: [].sort })
+```
+
+To specify a different number of runs, simply add it as a property:
+
+```js
+codeTimer.run({ method: [].sort, runs: 5 })
+```
+
+To run a custom function, add `custom: true` as a property:
+
+```js
+codeTimer.run({ method: myFunction, runs: 5, custom: true })
+```
+
+To change the number of warm up runs:
+
+```js
+codeTimer.run({ method: reverse, warmUp: 3, custom: true })
+```
+
+----
+
+## Developer Section
+
+### Development Dependencies
 
 - `"c8": "^7.7.2",`
 - `"chai": "^4.3.4",`
@@ -220,7 +274,7 @@ and the runTime method: `codeTimer.runTime()`
 - `"nyc": "^15.1.0",`
 - `"sinon": "^10.0.0"`
 
-## Getting Started
+### Getting Started
 
 * Clone this repository: `git clone git@github.com:AJ8GH/algo-timer.git`
 * Navigate to project root and install dependencies: `cd algo-timer && npm i`
