@@ -12,6 +12,20 @@ Time algorithms, functions, or single lines to measure effiency and locate high-
 
 ## Usage
 
+**The framework can be used:**
+- As a manual timer to time any code, using the `#start()` and `#stop()` functions.
+- To time built in functions or custom made algorithms.
+- To time an algorithm on a single array or integer using the `#Time()` function.
+- To time an algorithm on multiple arrays or integers with increasing size using the `#run()` function.
+
+**Class responsibilities:**
+- The `CodeTimer` class is responsible for timing the code.
+- The `CodeRunner` class is responsible for running the timer on multiple inputs.
+- The `InputGenerator` class is responsible for creating arrays of random numbers to run the algorithms on.
+- The `Printer` class is responsible for outputting the method name, input size and run time to the terminal after each run.
+
+### Getting Started
+
 Add to your package as a development dependency:
 
 ```shell
@@ -56,14 +70,14 @@ Using codeTimer `#time()` to time how long a function takes to process an array 
 
 It takes an object argument, which can contain the following properties:
 
-property | Description                                    | Input type | default
----------|------------------------------------------------|------------|--------
-method   | method you want to time                        | function   | None
-size     | size of the input array to run                 | Integer    | `1000`
-custom   | specifies that method is not a native function | Boolean    | `false`
-args     | arguments to call the method with              | array      | `[]`
+property   | Description                                                               | Input type | default
+-----------|---------------------------------------------------------------------------|------------|--------
+`method`   | method you want to time                                                   | function   | None
+`size`     | size of the input array to run                                            | Integer    | `1000`
+`custom`   | set to true to specify that method is not a native function               | Boolean    | `false`
+`args`     | arguments to call the method with                                         | array      | `[]`
+`Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false`
 
----
 ### Example Usage
 
 Time the `array.sort()` method, on an array of 20,000 elements:
@@ -88,7 +102,7 @@ codeTimer.printResults()
 
 ### Timing a custom function
 
-Pass custom: true in the argument object to use codeTimer #time() to time a custom method.
+Add `custom: true` in the argument object to use codeTimer #time() to time a custom method.
 
 ```js
 const codeTimer = new codeTimer()
@@ -97,6 +111,22 @@ const last = (array) => { return array[array.length -1] }
 
 const options = {method: last, custom: true }
 ```
+
+### Running a function on an integer instead of an array
+
+Add `integer: true` in the argument object to use codeTimer #time() to time a custom method.
+
+```js
+const codeTimer = new codeTimer()
+
+const fibonacci = (integer) => { return /* code which returns fibbonacci numbers */ }
+
+const options = {method: fibonacci, custom: true, integer: true, size: 5000 }
+```
+
+An input array will not be generated, and will instead run `fibonacci(5000)`
+
+To run multiple integers increasing in size, add the same property to the options argument using the `#run()` function - see [timing increasing input sizes](#timing-increasing-input-sizes)
 
 ### Calling a function with arguments
 
@@ -110,7 +140,7 @@ const options = {method: [].unshift, args: [1, 2, 3] }
 // will call array.push(1, 2, 3)
 ```
 
-### Timing increasing input sizes with `#run()`
+### Timing increasing input sizes
 
 `#run()` can be used to execute multiple inputs of increasing size.
 
@@ -120,14 +150,15 @@ Note - the method will run with 5 additional warm up inputs at the start, the si
 
 The number of runs and the number of warm ups can be specified.
 
-property | Description                                      | Input type | default
----------|--------------------------------------------------|------------|--------
-method   | method you want to time                          | function   | None
-size     | size of the initial input array                  | Integer    | `1000`
-custom   | specifies that method is not a native function   | Boolean    | `false`
-args     | arguments to call the method with                | array      | `[]`
-runs     | number of times to execute the method under test | Integer    | `20`
-warmUp   | number of warm up runs to execute                | Integer    | `5`
+property   | Description                                                               | Input type | default
+-----------|---------------------------------------------------------------------------|------------|--------
+`method`   | method you want to time                                                   | function   | None
+`size`     | size of the initial input array                                           | Integer    | `1000`
+`custom`   | specifies that method is not a native function                            | Boolean    | `false`
+`args`     | arguments to call the method with                                         | array      | `[]`
+`runs`     | number of times to execute the method under test                          | Integer    | `20`
+`warmUp`   | number of warm up runs to execute                                         | Integer    | `5`
+`Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false`
 
 ### Example Usage
 
