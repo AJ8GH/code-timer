@@ -11,13 +11,13 @@ describe('Printer', () => {
 
       const codeTimer = {
         method: [].reverse,
-        arraySize: 5000,
+        inputSize: 5000,
         runTime: () => { return 2 }
       }
 
       printer.printResults(codeTimer)
 
-      const expectedOutput = '#reverse() => Array Size: 5000, Run Time: 2'
+      const expectedOutput = '#reverse() => Input size: 5000, Run time: 2'
 
       sinon.assert.calledWith(console.log, expectedOutput)
     })
