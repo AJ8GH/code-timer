@@ -76,13 +76,13 @@ Using codeTimer `#time()` to time how long a function takes to process an array 
 
 It takes an object argument, which can contain the following properties:
 
-property   | Description                                                               | Input type | default
------------|---------------------------------------------------------------------------|------------|--------
-`method`   | method you want to time                                                   | function   | None
-`size`     | size of the input array to run                                            | Integer    | `1000`
-`custom`   | set to true to specify that method is not a native function               | Boolean    | `false`
-`args`     | arguments to call the method with                                         | array      | `[]`
-`Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false`
+property   | Description                                                               | Input type | default | Required
+-----------|---------------------------------------------------------------------------|------------|---------|----------
+`method`   | method you want to time                                                   | function   | None    | Yes
+`size`     | size of the input array to run                                            | Integer    | `1000`  | No
+`custom`   | set to true to specify that method is not a native function               | Boolean    | `false` | No
+`args`     | arguments to call the method with                                         | array      | `[]`    | No
+`Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false` | No
 
 ### Timing a built in array function
 
@@ -174,16 +174,15 @@ Arrays of random numbers are auto-generated for each run. Each input increases i
 
 The function will run with 5 additional warm up inputs at the start, the same size as the starting input size. This is to warm up the system and reduce spikes. The number of runs and the number of warm ups can be customised.
 
-property   | Description                                                               | Input type | default
------------|---------------------------------------------------------------------------|------------|--------
-`method`   | method you want to time                                                   | function   | None
-`size`     | size of the initial input array                                           | Integer    | `1000`
-`custom`   | specifies that method is not a native function                            | Boolean    | `false`
-`args`     | arguments to call the method with                                         | array      | `[]`
-`runs`     | number of times to execute the method under test                          | Integer    | `20`
-`warmUp`   | number of warm up runs to execute                                         | Integer    | `5`
-`Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false`
-
+property   | Description                                                               | Input type | Default | Required
+-----------|---------------------------------------------------------------------------|------------|---------|----------
+`method`   | method you want to time                                                   | Function   | None    | Yes
+`size`     | size of the initial input array                                           | Integer    | `1000`  | No
+`custom`   | specifies that method is not a native function                            | Boolean    | `false` | No
+`args`     | arguments to call the method with                                         | Array      | `[]`    | No
+`runs`     | number of times to execute the method under test                          | Integer    | `20`    | No
+`warmUp`   | number of warm up runs to execute                                         | Integer    | `5`     | No
+`Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false` | No
 
 The data from the last run can be accessed through the properties:
 * `codeTimer.method`
