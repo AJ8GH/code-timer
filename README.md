@@ -8,7 +8,7 @@ A flexible and easy to use code timing framework.
 
 Time algorithms, functions, or single lines to measure effiency and locate high-cost operations.
 
-[Usage](#usage) | [Getting Started](#getting-started) | [Manual timing](#manual-usage) | [Automated Timing](#automated-timing) | [Timing Custom Functions](#timing-a-custom-function) | [Timing Built-in Functions](#timing-a-built-in-function) | [Timing Integer Functions](#timing-integer-functions) | [Automated Timing of multiple Inputs](#timing-increasing-input-sizes) | [Development](#developer-section)
+[Usage](#usage) | [Getting Started](#getting-started) | [Manual timing](#manual-usage) | [Automated Timing](#automated-timing) | [Timing Custom Functions](#timing-a-custom-function) | [Timing Built-in Functions](#timing-a-built-in-array-function) | [Timing Integer Functions](#timing-integer-functions) | [Automated Timing of multiple Inputs](#timing-increasing-input-sizes) | [Development](#developer-section)
 
 [Available on NPM](https://www.npmjs.com/package/@aj8/code-timer)
 
@@ -72,9 +72,9 @@ codeTimer.runTime()
 
 ## Automated timing
 
-Using codeTimer `#time()` to time how long a function takes to process an array of random numbers.
+Use codeTimer `#time()` to time how long any function takes to run. By default, it will auto generate an array of random numbers and run the function on the array.
 
-It takes an object argument, which can contain the following properties:
+The function is fully customisable. It takes an object argument, which can contain the following properties:
 
 property   | Description                                                               | Input type | default | Required
 -----------|---------------------------------------------------------------------------|------------|---------|----------
@@ -83,6 +83,18 @@ property   | Description                                                        
 `custom`   | set to true to specify that method is not a native function               | Boolean    | `false` | No
 `args`     | arguments to call the method with                                         | array      | `[]`    | No
 `Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false` | No
+
+The data from the last run can be accessed through the properties:
+* `codeTimer.method`
+* `codeTimer.startTime`
+* `codeTimer.arraySize`
+* `codeTimer.stopTime`
+
+The run time can be accessed via the runTime function: `codeTimer.runTime()`
+
+Use the `codeTimer.printResults()` function to log the method name, input size and run time of the last run, to the terminal.
+
+To time a function on multiple arrays increasing in size, use the `#run()` function - see [timing increasing input sizes](#timing-increasing-input-sizes)
 
 ### Timing a built in array function
 
@@ -113,7 +125,7 @@ codeTimer.printResults()
 
 ### Timing a custom function
 
-Add `custom: true` in the argument object to use codeTimer #time() to time a custom method.
+Add `custom: true` in the argument object to time a custom method.
 
 ```js
 const last = (array) => { return array[array.length -1] }
@@ -125,7 +137,7 @@ codeTimer.time(options)
 
 ### Timing integer functions
 
-Add `integer: true` in the argument object to use codeTimer #time() to time a custom method.
+Add `integer: true` in the argument object to time an integer method. Instead of generating the random number array, it will run on the integer value of the size property. This example will run `fibonacci(5000)`
 
 ```js
 const fibonacci = (integer) => { return /* code which returns fibbonacci numbers */ }
@@ -140,9 +152,7 @@ const options = {
 codeTimer.time(options)
 ```
 
-An input array will not be generated, and will instead run `fibonacci(5000)`
-
-To run multiple integers increasing in size, add the same property to the options argument using the `#run()` function - see [timing increasing input sizes](#timing-increasing-input-sizes)
+To time a function on multiple integers increasing in size, use the `#run()` function with the integer property set to true - see [timing increasing input sizes](#timing-increasing-input-sizes)
 
 ### Calling a function with arguments
 
@@ -183,14 +193,6 @@ property   | Description                                                        
 `runs`     | number of times to execute the method under test                          | Integer    | `20`    | No
 `warmUp`   | number of warm up runs to execute                                         | Integer    | `5`     | No
 `Integer`  | set to true to call the method on the `size` integer, instead of an array | Boolean    | `false` | No
-
-The data from the last run can be accessed through the properties:
-* `codeTimer.method`
-* `codeTimer.startTime`
-* `codeTimer.arraySize`
-* `codeTimer.stopTime`
-
-The run time can be accessed via the runTime function: `codeTimer.runTime()`
 
 ### Example Usage
 
