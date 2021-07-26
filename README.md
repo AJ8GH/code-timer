@@ -15,7 +15,7 @@ Time algorithms, functions, or single lines to measure effiency and locate high-
 ## Overview
 
 **Required Node Version:**
-- >= 15
+- `>= 15`
 
 **The framework can be used:**
 - As a manual timer to time any code, using the `#start()` and `#stop()` functions.
