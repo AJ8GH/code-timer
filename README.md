@@ -12,7 +12,10 @@ Time algorithms, functions, or single lines to measure effiency and locate high-
 
 [Available on NPM](https://www.npmjs.com/package/@aj8/code-timer)
 
-## Usage
+## Overview
+
+**Required Node Version:**
+- >= 15
 
 **The framework can be used:**
 - As a manual timer to time any code, using the `#start()` and `#stop()` functions.
@@ -28,7 +31,9 @@ Time algorithms, functions, or single lines to measure effiency and locate high-
 
 ### Getting Started
 
-Add to your package as a development dependency:
+Ensure you are using **Node version 15** or higher.
+
+Add CodeTimer to your package as a development dependency:
 
 ```shell
 npm i -D @aj8/code-timer
@@ -37,7 +42,7 @@ npm i -D @aj8/code-timer
 Import into your project:
 
 ```js
-import codeTimer from 'code-timer'
+import CodeTimer from '@aj8/code-timer'
 ```
 
 Ensure `type` is set to `module` in your `package.json`:
@@ -58,14 +63,16 @@ And you are ready to start timing some code.
 Use `#start()` and `#stop()` manually to time any code.
 
 ```js
-codeTimer = new codeTimer()
+const codeTimer = new codeTimer()
 
 codeTimer.start()
 // code you want to time
 codeTimer.stop()
 
-codeTimer.runTime()
-// run time of your code in ms
+const runTime = codeTimer.runTime()
+
+console.log(runTime)
+// => run time of your code in ms
 ```
 
 ----
